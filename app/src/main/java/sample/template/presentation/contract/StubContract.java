@@ -1,12 +1,13 @@
 package sample.template.presentation.contract;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author Tom Koptel
  */
 public interface StubContract {
     interface View {
-        void showLoading();
-        void hideLoading();
+        void showResult(@NonNull String result);
     }
 
     interface Action {

@@ -20,7 +20,7 @@ public abstract class AbstractUseCase<Result, Argument> {
         mSchedulers = schedulers;
     }
 
-    protected abstract Observable<Result> buildUseCaseObservable(Argument argument);
+    public abstract Observable<Result> buildUseCaseObservable(Argument argument);
 
     /**
      * Executes the current use case.

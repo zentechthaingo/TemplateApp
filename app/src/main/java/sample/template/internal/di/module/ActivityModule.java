@@ -1,6 +1,7 @@
 package sample.template.internal.di.module;
 
 import android.app.Activity;
+import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,10 +19,16 @@ public class ActivityModule {
         mActivity = activity;
     }
 
-    @ActivityContext
     @PerActivity
     @Provides
     Activity providesActivity() {
+        return mActivity;
+    }
+
+    @PerActivity
+    @ActivityContext
+    @Provides
+    Context providesActivitContext() {
         return mActivity;
     }
 }

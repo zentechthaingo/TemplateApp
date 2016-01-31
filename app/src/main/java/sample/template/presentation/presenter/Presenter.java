@@ -1,13 +1,21 @@
 package sample.template.presentation.presenter;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author Tom Koptel
  */
 public abstract class Presenter<View> {
-    protected View mView;
+    @NonNull
+    private View mView;
 
-    public void injectView(View view) {
+    public void injectView(@NonNull View view) {
         mView = view;
+    }
+
+    @NonNull
+    public View getView() {
+        return mView;
     }
 
     public abstract void resume();

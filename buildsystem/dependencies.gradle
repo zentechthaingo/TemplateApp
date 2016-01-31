@@ -19,8 +19,7 @@ ext {
     rxAndroidVersion = '1.0.1'
     javaxAnnotationVersion = '1.0'
     gsonVersion = '2.4'
-    okHttpVersion = '2.5.0'
-    androidAnnotationsVersion = '21.0.3'
+    supportAnnotationsVersion = '21.0.3'
     retrofit2Version = '2.0.0-beta3'
     supportLibVersion = '23.1.1'
 
@@ -37,6 +36,7 @@ ext {
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger:             "com.google.dagger:dagger:${daggerVersion}",
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
     ]
 
     presentationDependencies = [
@@ -46,11 +46,9 @@ ext {
     ]
 
     dataDependencies = [
-            okHttp:                 "com.squareup.okhttp:okhttp:${okHttpVersion}",
             gson:                   "com.google.code.gson:gson:${gsonVersion}",
             rxJava:                 "io.reactivex:rxjava:${rxJavaVersion}",
             rxAndroid:              "io.reactivex:rxandroid:${rxAndroidVersion}",
-            androidAnnotations:     "com.android.support:support-annotations:${androidAnnotationsVersion}",
             retrofit2:              "com.squareup.retrofit2:retrofit:${retrofit2Version}",
             retrofit2GsonConverter: "com.squareup.retrofit2:converter-gson:${retrofit2Version}",
             retrofit2RxAdapter:     "com.squareup.retrofit2:adapter-rxjava:${retrofit2Version}",

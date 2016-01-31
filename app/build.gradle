@@ -73,46 +73,49 @@ android {
 }
 
 dependencies {
-    def commonDependencies = rootProject.ext.commonDependencies
-    def presentationDependencies = rootProject.ext.presentationDependencies
-    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
-    def dataDependencies = rootProject.ext.dataDependencies
-    def testDependencies = rootProject.ext.dataTestDependencies
+    def lib = rootProject.ext.commonDependencies
+    def presentationLib = rootProject.ext.presentationDependencies
+    def presentationTestLib = rootProject.ext.presentationTestDependencies
+    def dataLib = rootProject.ext.dataDependencies
+    def testLib = rootProject.ext.dataTestDependencies
 
-    apt commonDependencies.daggerCompiler
-    provided commonDependencies.javaxAnnotation
-    compile commonDependencies.dagger
+    apt lib.daggerCompiler
+    provided lib.javaxAnnotation
+    compile lib.dagger
 
-    compile presentationDependencies.butterKnife
-    compile presentationDependencies.appcompatv7
-    compile presentationDependencies.recyclerView
+    compile lib.supportAnnotations
 
-    compile dataDependencies.okHttp
-    compile dataDependencies.gson
-    compile dataDependencies.rxJava
-    compile dataDependencies.rxAndroid
-    compile dataDependencies.androidAnnotations
-    compile dataDependencies.retrofit2
-    compile dataDependencies.retrofit2GsonConverter
-    compile dataDependencies.retrofit2RxAdapter
+    compile presentationLib.butterKnife
+    compile presentationLib.appcompatv7
+    compile presentationLib.recyclerView
 
-    testCompile testDependencies.junit
-    testCompile testDependencies.mockito
-    testCompile testDependencies.hamcrest
-    testCompile testDependencies.robolectric
+    compile dataLib.rxJava
+    compile dataLib.rxAndroid
 
-    androidTestApt commonDependencies.daggerCompiler
-    androidTestCompile presentationTestDependencies.mockito
-    androidTestCompile presentationTestDependencies.hamcrest
-    androidTestCompile presentationTestDependencies.dexmaker
-    androidTestCompile presentationTestDependencies.dexmakerMockito
-    androidTestCompile(presentationTestDependencies.espressoCore) {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile(presentationTestDependencies.espressoIntents) {
-        exclude module: 'support-annotations'
-    }
-    androidTestCompile(presentationTestDependencies.androidTestRules) {
-        exclude module: 'support-annotations'
+    compile dataLib.gson
+    compile dataLib.retrofit2
+    compile dataLib.retrofit2GsonConverter
+    compile dataLib.retrofit2RxAdapter
+
+    testApt lib.daggerCompiler
+    testCompile testLib.junit
+    testCompile testLib.mockito
+    testCompile testLib.hamcrest
+    testCompile testLib.robolectric
+
+    androidTestApt lib.daggerCompiler
+    androidTestCompile presentationTestLib.mockito
+    androidTestCompile presentationTestLib.hamcrest
+    androidTestCompile presentationTestLib.dexmaker
+    androidTestCompile presentationTestLib.dexmakerMockito
+    androidTestCompile presentationTestLib.espressoCore
+    androidTestCompile presentationTestLib.espressoIntents
+    androidTestCompile presentationTestLib.androidTestRules
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Force our version of support-annotations, we have a conflict between app and androidTest dependency resolution.
+        force rootProject.ext.commonDependencies.supportAnnotations
     }
 }

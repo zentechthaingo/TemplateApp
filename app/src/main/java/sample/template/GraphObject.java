@@ -2,7 +2,7 @@ package sample.template;
 
 import android.content.Context;
 
-import sample.template.internal.di.component.AppComponent;
+import sample.template.di.component.AppComponent;
 
 /**
  * @author Tom Koptel

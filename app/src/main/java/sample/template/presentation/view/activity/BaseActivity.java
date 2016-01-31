@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import sample.template.GraphObject;
-import sample.template.internal.di.component.AppComponent;
-import sample.template.internal.di.module.ActivityModule;
+import sample.template.di.component.AppComponent;
+import sample.template.di.module.ActivityModule;
 
 /**
  * @author Tom Koptel

@@ -80,6 +80,9 @@ dependencies {
     compile dataDependencies.rxJava
     compile dataDependencies.rxAndroid
     compile dataDependencies.androidAnnotations
+    compile dataDependencies.retrofit2
+    compile dataDependencies.retrofit2GsonConverter
+    compile dataDependencies.retrofit2RxAdapter
 
     testCompile testDependencies.junit
     testCompile testDependencies.mockito

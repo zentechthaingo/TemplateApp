@@ -2,6 +2,8 @@ package android.template.internal.di.module;
 
 import android.content.Context;
 import android.template.App;
+import android.template.AppSchedulers;
+import android.template.internal.di.AppSchedulersImpl;
 import android.template.internal.di.ApplicationContext;
 import android.template.internal.di.PerApplication;
 
@@ -24,5 +26,11 @@ public class AppModule {
     @Provides
     Context providesAppContext() {
         return mApp;
+    }
+
+    @Provides
+    @PerApplication
+    AppSchedulers providesAppSchedulers(AppSchedulersImpl schedulers) {
+        return schedulers;
     }
 }

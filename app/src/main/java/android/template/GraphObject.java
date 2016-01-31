@@ -12,7 +12,7 @@ public interface GraphObject {
     class Factory {
         private Factory() {}
 
-        public static GraphObject get(Context context) {
+        public static GraphObject from(Context context) {
             return ((App) context.getApplicationContext());
         }
     }

@@ -1,4 +1,5 @@
-<manifest package="android.template"
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="sample.template"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
@@ -9,6 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".presentation.view.activity.StubActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

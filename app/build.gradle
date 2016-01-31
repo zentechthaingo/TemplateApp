@@ -56,11 +56,23 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    productFlavors {
+        // Define separate dev and prod product flavors.
+        dev {
+            // dev utilizes minSDKVersion = 21 to allow the Android gradle plugin
+            // to pre-dex each module and produce an APK that can be tested on
+            // Android Lollipop without time consuming dex merging processes.
+            minSdkVersion 21
+        }
+        prod {
+            // The actual minSdkVersion for the application.
+            minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        }
+    }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-
     def commonDependencies = rootProject.ext.commonDependencies
     def presentationDependencies = rootProject.ext.presentationDependencies
     def presentationTestDependencies = rootProject.ext.presentationTestDependencies
@@ -89,10 +101,18 @@ dependencies {
     testCompile testDependencies.hamcrest
     testCompile testDependencies.robolectric
 
+    androidTestApt commonDependencies.daggerCompiler
     androidTestCompile presentationTestDependencies.mockito
     androidTestCompile presentationTestDependencies.hamcrest
     androidTestCompile presentationTestDependencies.dexmaker
     androidTestCompile presentationTestDependencies.dexmakerMockito
-    androidTestCompile presentationTestDependencies.espresso
-    androidTestCompile presentationTestDependencies.testingSupportLib
+    androidTestCompile(presentationTestDependencies.espressoCore) {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile(presentationTestDependencies.espressoIntents) {
+        exclude module: 'support-annotations'
+    }
+    androidTestCompile(presentationTestDependencies.androidTestRules) {
+        exclude module: 'support-annotations'
+    }
 }

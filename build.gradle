@@ -14,11 +14,11 @@ buildscript {
 
 allprojects {
     ext {
-        androidApplicationId = 'android.template'
+        androidApplicationId = 'sample.template'
         androidVersionCode = 1
         androidVersionName = "1.0"
-        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-        testApplicationId = 'android.template.test'
+        testInstrumentationRunner = "sample.template.test.MockTestRunner"
+        testApplicationId = 'sample.template.test'
     }
 }
 

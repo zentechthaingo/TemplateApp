@@ -22,14 +22,15 @@ ext {
     okHttpVersion = '2.5.0'
     androidAnnotationsVersion = '21.0.3'
     retrofit2Version = '2.0.0-beta3'
+    supportLibVersion = '23.1.1'
 
     //Testing
     robolectricVersion = '3.0'
     jUnitVersion = '4.12'
     mockitoVersion = '1.9.5'
     dexmakerVersion = '1.0'
-    espressoVersion = '2.0'
-    testingSupportLibVersion = '0.1'
+    espressoVersion = '2.2.1'
+    testingSupportLibVersion = '0.4.1'
     hamcrestLibVersion = '1.3'
 
     commonDependencies = [
@@ -40,8 +41,8 @@ ext {
 
     presentationDependencies = [
             butterKnife:        "com.jakewharton:butterknife:${butterKnifeVersion}",
-            recyclerView:       "com.android.support:recyclerview-v7:${recyclerViewVersion}",
-            appcompatv7:        "com.android.support:appcompat-v7:${androidBuildToolsVersion}",
+            recyclerView:       "com.android.support:recyclerview-v7:${supportLibVersion}",
+            appcompatv7:        "com.android.support:appcompat-v7:${supportLibVersion}",
     ]
 
     dataDependencies = [
@@ -64,10 +65,12 @@ ext {
 
     presentationTestDependencies = [
             mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            hamcrest:           "org.hamcrest:hamcrest-integration:${hamcrestLibVersion}",
             dexmaker:           "com.google.dexmaker:dexmaker:${dexmakerVersion}",
             dexmakerMockito:    "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
-            espresso:           "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            testingSupportLib:  "com.android.support.test:testing-support-lib:${testingSupportLibVersion}",
-            hamcrest:           "org.hamcrest:hamcrest-integration:${hamcrestLibVersion}",
+
+            androidTestRules:   "com.android.support.test:rules:${testingSupportLibVersion}",
+            espressoCore:       "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espressoIntents:    "com.android.support.test.espresso:espresso-intents:${espressoVersion}",
     ]
 }

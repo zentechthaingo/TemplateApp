@@ -3,6 +3,7 @@ package sample.template.internal.di.component;
 import dagger.Subcomponent;
 import sample.template.internal.di.PerActivity;
 import sample.template.internal.di.module.ActivityModule;
+import sample.template.internal.di.module.StubActivityModule;
 import sample.template.presentation.view.activity.StubActivity;
 
 /**
@@ -11,7 +12,8 @@ import sample.template.presentation.view.activity.StubActivity;
 @PerActivity
 @Subcomponent(
         modules = {
-                ActivityModule.class
+                ActivityModule.class,
+                StubActivityModule.class,
         }
 )
 public interface StubActivityComponent {

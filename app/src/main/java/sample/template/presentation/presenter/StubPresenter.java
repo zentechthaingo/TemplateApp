@@ -1,23 +1,38 @@
 package sample.template.presentation.presenter;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.observers.Subscribers;
-import sample.template.domain.interactor.ThreeSecondsOperation;
+import sample.template.AppSchedulers;
+import sample.template.domain.model.AppItem;
+import sample.template.domain.route.page.ItemsLoader;
 import sample.template.internal.di.PerActivity;
 import sample.template.presentation.contract.StubContract;
+import sample.template.presentation.model.ItemViewModel;
+import sample.template.presentation.model.mapper.ItemViewMapper;
 
 /**
  * @author Tom Koptel
  */
 @PerActivity
 public class StubPresenter extends Presenter<StubContract.View> implements StubContract.Action {
-    private final ThreeSecondsOperation mThreeSecondsOperation;
+    private ItemsLoader<List<AppItem>> mItemsLoader;
+    private ItemViewMapper mItemViewMapper;
+    private AppSchedulers mSchedulers;
 
     @Inject
-    public StubPresenter(ThreeSecondsOperation threeSecondsOperation) {
-        mThreeSecondsOperation = threeSecondsOperation;
+    public StubPresenter(
+            ItemsLoader<List<AppItem>> itemsLoader,
+            ItemViewMapper itemViewMapper,
+            AppSchedulers schedulers
+    ) {
+        mItemsLoader = itemsLoader;
+        mItemViewMapper = itemViewMapper;
+        mSchedulers = schedulers;
     }
 
     @Override
@@ -30,17 +45,26 @@ public class StubPresenter extends Presenter<StubContract.View> implements StubC
 
     @Override
     public void destroy() {
-        mThreeSecondsOperation.unsubscribe();
     }
 
     @Override
     public void loadData() {
-        mThreeSecondsOperation.execute(null,
-                Subscribers.create(new Action1<Void>() {
+        mItemsLoader.firstPage()
+                .map(new Func1<List<AppItem>, List<ItemViewModel>>() {
                     @Override
-                    public void call(Void aVoid) {
-                        getView().showResult("After 3 seconds");
+                    public List<ItemViewModel> call(List<AppItem> appItems) {
+                        return mItemViewMapper.toViewModels(appItems);
                     }
-                }));
+                })
+                .subscribeOn(mSchedulers.backgroundThread())
+                .observeOn(mSchedulers.uiThread())
+                .subscribe(
+                        Subscribers.create(new Action1<List<ItemViewModel>>() {
+                            @Override
+                            public void call(List<ItemViewModel> items) {
+                                getView().showResult(items);
+                            }
+                        })
+                );
     }
 }

@@ -1,10 +1,10 @@
-package sample.template.internal.di.component;
+package sample.template.di.component;
 
-import sample.template.internal.di.model.TestAppModule;
+import sample.template.di.TestAppModule;
 
 import dagger.Component;
-import sample.template.internal.di.PerApplication;
-import sample.template.internal.di.module.NetworkModule;
+import sample.template.di.PerApplication;
+import sample.template.di.module.NetworkModule;
 
 /**
  * @author Tom Koptel

@@ -1,9 +1,9 @@
-package sample.template.internal.di.component;
+package sample.template.di.component;
 
 import dagger.Subcomponent;
-import sample.template.internal.di.PerActivity;
-import sample.template.internal.di.module.ActivityModule;
-import sample.template.internal.di.module.StubActivityModule;
+import sample.template.di.PerActivity;
+import sample.template.di.module.ActivityModule;
+import sample.template.di.module.StubActivityModule;
 import sample.template.presentation.view.activity.StubActivity;
 
 /**

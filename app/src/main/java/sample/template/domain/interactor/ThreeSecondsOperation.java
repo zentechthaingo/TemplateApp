@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import rx.Observable;
 import rx.functions.Func0;
 import sample.template.AppSchedulers;
-import sample.template.internal.di.PerApplication;
+import sample.template.di.PerApplication;
 
 /**
  * @author Tom Koptel

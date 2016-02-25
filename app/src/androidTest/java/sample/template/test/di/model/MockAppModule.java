@@ -1,4 +1,4 @@
-package sample.template.test.internal.di.model;
+package sample.template.test.di.model;
 
 import android.os.AsyncTask;
 
@@ -10,8 +10,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sample.template.App;
 import sample.template.AppSchedulers;
-import sample.template.internal.di.PerApplication;
-import sample.template.internal.di.module.AppModule;
+import sample.template.di.PerApplication;
+import sample.template.di.module.AppModule;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

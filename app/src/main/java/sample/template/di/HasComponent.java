@@ -1,4 +1,4 @@
-package sample.template.internal.di;
+package sample.template.di;
 
 /**
  * @author Tom Koptel

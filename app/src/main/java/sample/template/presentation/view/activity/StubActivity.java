@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import sample.template.R;
-import sample.template.internal.di.module.ActivityModule;
+import sample.template.di.module.ActivityModule;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
 import sample.template.presentation.presenter.StubPresenter;

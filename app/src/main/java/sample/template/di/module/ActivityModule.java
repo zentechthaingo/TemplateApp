@@ -1,12 +1,12 @@
-package sample.template.internal.di.module;
+package sample.template.di.module;
 
 import android.app.Activity;
 import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import sample.template.internal.di.ActivityContext;
-import sample.template.internal.di.PerActivity;
+import sample.template.di.ActivityContext;
+import sample.template.di.PerActivity;
 
 /**
  * @author Tom Koptel

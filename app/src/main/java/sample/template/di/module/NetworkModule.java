@@ -1,4 +1,4 @@
-package sample.template.internal.di.module;
+package sample.template.di.module;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
 import retrofit2.RxJavaCallAdapterFactory;
-import sample.template.internal.di.PerApplication;
+import sample.template.di.PerApplication;
 
 /**
  * @author Tom Koptel

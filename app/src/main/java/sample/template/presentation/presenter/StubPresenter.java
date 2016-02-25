@@ -10,7 +10,7 @@ import rx.observers.Subscribers;
 import sample.template.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.internal.di.PerActivity;
+import sample.template.di.PerActivity;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
 import sample.template.presentation.model.mapper.ItemViewMapper;

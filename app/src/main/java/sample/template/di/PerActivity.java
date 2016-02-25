@@ -1,4 +1,4 @@
-package sample.template.internal.di;
+package sample.template.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,5 +10,5 @@ import javax.inject.Scope;
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PerApplication {
+public @interface PerActivity {
 }

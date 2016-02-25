@@ -1,4 +1,4 @@
-package sample.template.internal.di;
+package sample.template.di;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -12,5 +12,5 @@ import javax.inject.Qualifier;
 @Qualifier
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ActivityContext {
+public @interface ApplicationContext {
 }

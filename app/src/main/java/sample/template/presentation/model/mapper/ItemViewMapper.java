@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import sample.template.domain.model.AppItem;
-import sample.template.internal.di.PerActivity;
+import sample.template.di.PerActivity;
 import sample.template.presentation.model.ItemViewModel;
 
 /**

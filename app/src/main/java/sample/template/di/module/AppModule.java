@@ -1,4 +1,4 @@
-package sample.template.internal.di.module;
+package sample.template.di.module;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import dagger.Module;
 import dagger.Provides;
 import sample.template.App;
 import sample.template.AppSchedulers;
-import sample.template.internal.di.ApplicationContext;
-import sample.template.internal.di.PerApplication;
+import sample.template.di.ApplicationContext;
+import sample.template.di.PerApplication;
 
 /**
  * @author Tom Koptel

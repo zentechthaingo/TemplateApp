@@ -1,10 +1,10 @@
-package sample.template.internal.di.component;
+package sample.template.di.component;
 
 import dagger.Component;
-import sample.template.internal.di.PerApplication;
-import sample.template.internal.di.module.ActivityModule;
-import sample.template.internal.di.module.AppModule;
-import sample.template.internal.di.module.NetworkModule;
+import sample.template.di.PerApplication;
+import sample.template.di.module.ActivityModule;
+import sample.template.di.module.AppModule;
+import sample.template.di.module.NetworkModule;
 import sample.template.presentation.view.activity.BaseActivity;
 
 /**

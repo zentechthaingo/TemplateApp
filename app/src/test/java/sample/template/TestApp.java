@@ -1,8 +1,8 @@
 package sample.template;
 
-import sample.template.internal.di.component.AppComponent;
-import sample.template.internal.di.component.DaggerTestAppComponent;
-import sample.template.internal.di.model.TestAppModule;
+import sample.template.di.component.AppComponent;
+import sample.template.di.component.DaggerTestAppComponent;
+import sample.template.di.TestAppModule;
 
 /**
  * @author Tom Koptel

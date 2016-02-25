@@ -1,4 +1,4 @@
-package sample.template.internal.di.module;
+package sample.template.di.module;
 
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +11,7 @@ import sample.template.domain.model.AppItem;
 import sample.template.domain.route.RouteCallerFactory;
 import sample.template.domain.route.Router;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.internal.di.PerActivity;
+import sample.template.di.PerActivity;
 import sample.template.presentation.model.mapper.ItemViewMapper;
 import sample.template.presentation.presenter.StubPresenter;
 

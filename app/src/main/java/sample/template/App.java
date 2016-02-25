@@ -2,9 +2,9 @@ package sample.template;
 
 import android.app.Application;
 
-import sample.template.internal.di.component.AppComponent;
-import sample.template.internal.di.component.DaggerAppComponent;
-import sample.template.internal.di.module.AppModule;
+import sample.template.di.component.AppComponent;
+import sample.template.di.component.DaggerAppComponent;
+import sample.template.di.module.AppModule;
 
 /**
  * @author Tom Koptel

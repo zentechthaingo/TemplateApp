@@ -1,27 +1,9 @@
 package sample.template.presentation.view.activity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
-import sample.template.GraphObject;
-import sample.template.di.component.AppComponent;
-import sample.template.di.module.ActivityModule;
+import sample.template.presentation.component.ComponentCacheActivity;
 
 /**
  * @author Tom Koptel
  */
-public abstract class BaseActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getAppComponent().inject(this);
-    }
-
-    protected AppComponent getAppComponent() {
-        return GraphObject.Factory.from(this).getComponent();
-    }
-
-    protected ActivityModule getActivityModule() {
-        return new ActivityModule(this);
-    }
+public abstract class BaseActivity extends ComponentCacheActivity {
 }

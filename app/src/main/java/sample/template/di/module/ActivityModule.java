@@ -6,7 +6,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import sample.template.di.ActivityContext;
-import sample.template.di.PerActivity;
+import sample.template.di.PerPage;
 
 /**
  * @author Tom Koptel
@@ -19,13 +19,13 @@ public class ActivityModule {
         mActivity = activity;
     }
 
-    @PerActivity
+    @PerPage
     @Provides
     Activity providesActivity() {
         return mActivity;
     }
 
-    @PerActivity
+    @PerPage
     @ActivityContext
     @Provides
     Context providesActivitContext() {

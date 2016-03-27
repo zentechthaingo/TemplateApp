@@ -11,7 +11,7 @@ import sample.template.domain.model.AppItem;
 import sample.template.domain.route.RouteCallerFactory;
 import sample.template.domain.route.Router;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.di.PerActivity;
+import sample.template.di.PerPage;
 import sample.template.presentation.model.mapper.ItemViewMapper;
 import sample.template.presentation.presenter.StubPresenter;
 
@@ -19,8 +19,8 @@ import sample.template.presentation.presenter.StubPresenter;
  * @author Tom Koptel
  */
 @Module
-public class StubActivityModule {
-    @PerActivity
+public class StubModule {
+    @PerPage
     @Provides
     StubPresenter providesPresenter(ItemViewMapper viewMapper, AppSchedulers appSchedulers) {
         RouteCallerFactory<List<AppItem>> fake = new FakeItemsSearchCallerFactory();

@@ -10,7 +10,8 @@ import rx.observers.Subscribers;
 import sample.template.domain.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.di.PerActivity;
+import sample.template.di.PerPage;
+import sample.template.presentation.component.presenter.BasePresenter;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
 import sample.template.presentation.model.mapper.ItemViewMapper;
@@ -18,8 +19,8 @@ import sample.template.presentation.model.mapper.ItemViewMapper;
 /**
  * @author Tom Koptel
  */
-@PerActivity
-public class StubPresenter extends Presenter<StubContract.View> implements StubContract.Action {
+@PerPage
+public class StubPresenter extends BasePresenter<StubContract.View> implements StubContract.Action {
     private ItemsLoader<List<AppItem>> mItemsLoader;
     private ItemViewMapper mItemViewMapper;
     private AppSchedulers mSchedulers;
@@ -33,18 +34,6 @@ public class StubPresenter extends Presenter<StubContract.View> implements StubC
         mItemsLoader = itemsLoader;
         mItemViewMapper = itemViewMapper;
         mSchedulers = schedulers;
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void destroy() {
     }
 
     @Override
@@ -62,7 +51,7 @@ public class StubPresenter extends Presenter<StubContract.View> implements StubC
                         Subscribers.create(new Action1<List<ItemViewModel>>() {
                             @Override
                             public void call(List<ItemViewModel> items) {
-                                getView().showResult(items);
+                                view.showResult(items);
                             }
                         })
                 );

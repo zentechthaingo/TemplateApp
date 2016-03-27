@@ -2,10 +2,8 @@ package sample.template.di.component;
 
 import dagger.Component;
 import sample.template.di.PerApplication;
-import sample.template.di.module.ActivityModule;
 import sample.template.di.module.AppModule;
 import sample.template.di.module.NetworkModule;
-import sample.template.presentation.view.activity.BaseActivity;
 
 /**
  * @author Tom Koptel
@@ -18,7 +16,5 @@ import sample.template.presentation.view.activity.BaseActivity;
         }
 )
 public interface AppComponent {
-    void inject(BaseActivity baseActivity);
-
-    StubActivityComponent plus(ActivityModule activityModule);
+    StubComponent createStubComponent();
 }

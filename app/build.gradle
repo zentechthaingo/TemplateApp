@@ -81,11 +81,15 @@ dependencies {
     provided presentationDependencies.javaxAnnotation
 
     compile presentationDependencies.butterKnife
-    compile presentationDependencies.recyclerView
+
     compile presentationDependencies.rxJava
     compile presentationDependencies.rxAndroid
-    compile presentationDependencies.appcompatv7
+
     compile presentationDependencies.supportAnnotations
+
+    compile presentationDependencies.recyclerView
+    compile presentationDependencies.appcompatv7
+    compile presentationDependencies.paginate
 
     androidTestApt presentationDependencies.daggerCompiler
     androidTestCompile presentationTestDependencies.mockito

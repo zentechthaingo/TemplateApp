@@ -1,11 +1,13 @@
 package sample.template.presentation.presenter;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import sample.template.di.PerPage;
@@ -13,6 +15,7 @@ import sample.template.domain.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
 import sample.template.presentation.component.presenter.BasePresenter;
+import sample.template.presentation.component.presenter.PresenterBundle;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
 import sample.template.presentation.model.mapper.ItemViewMapper;
@@ -38,8 +41,31 @@ public class StubPresenter extends BasePresenter<StubContract.View> implements S
     }
 
     @Override
-    public void loadData() {
-        mItemsLoader.firstPage()
+    public void onCreate(@Nullable PresenterBundle bundle) {
+        loadFirstPage();
+    }
+
+    private void loadFirstPage() {
+        loadPage(mItemsLoader.firstPage(), new Action1<List<ItemViewModel>>() {
+            @Override
+            public void call(List<ItemViewModel> items) {
+                view.showFirstPage(items);
+            }
+        });
+    }
+
+    @Override
+    public void loadOlderPage() {
+        loadPage(mItemsLoader.olderPages(), new Action1<List<ItemViewModel>>() {
+            @Override
+            public void call(List<ItemViewModel> items) {
+                view.showOlderPage(items);
+            }
+        });
+    }
+
+    private void loadPage(Observable<List<AppItem>> items, Action1<List<ItemViewModel>> success) {
+        items
                 .map(new Func1<List<AppItem>, List<ItemViewModel>>() {
                     @Override
                     public List<ItemViewModel> call(List<AppItem> appItems) {
@@ -49,14 +75,11 @@ public class StubPresenter extends BasePresenter<StubContract.View> implements S
                 .subscribeOn(mSchedulers.backgroundThread())
                 .observeOn(mSchedulers.uiThread())
                 .subscribe(
-                        new Action1<List<ItemViewModel>>() {
-                            @Override
-                            public void call(List<ItemViewModel> items) {
-                                view.showResult(items);
-                            }
-                        }, new Action1<Throwable>() {
+                        success,
+                        new Action1<Throwable>() {
                             @Override
                             public void call(Throwable throwable) {
+                                view.cancelPageLoader();
                                 Log.e("StubPresenter", "Crashed", throwable);
                             }
                         }

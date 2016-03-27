@@ -46,6 +46,5 @@ public class StubListFragment extends PresenterControllerFragment<StubComponent,
 
         StubPresenter presenter = getComponent().getPresenter();
         presenter.bindView(mWidget);
-        presenter.loadData();
     }
 }

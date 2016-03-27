@@ -20,6 +20,7 @@ ext {
     gsonVersion = '2.4'
     retrofit2Version = '2.0.0-beta3'
     supportLibVersion = '23.1.1'
+    paginate = '0.5.1'
 
     //Annotations
     supportAnnotationsVersion = '21.0.3'
@@ -78,12 +79,15 @@ ext {
 
     presentationDependencies = [
             butterKnife       : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            recyclerView      : "com.android.support:recyclerview-v7:${supportLibVersion}",
-            appcompatv7       : "com.android.support:appcompat-v7:${supportLibVersion}",
             rxJava            : "io.reactivex:rxjava:${rxJavaVersion}",
             rxAndroid         : "io.reactivex:rxandroid:${rxAndroidVersion}",
 
             supportAnnotations: "com.android.support:support-annotations:${supportAnnotationsVersion}",
+
+            recyclerView      : "com.android.support:recyclerview-v7:${supportLibVersion}",
+            appcompatv7       : "com.android.support:appcompat-v7:${supportLibVersion}",
+            paginate          : "com.github.markomilos:paginate:${paginate}"
+
     ] + daggerDependencies
 
     presentationTestDependencies = [

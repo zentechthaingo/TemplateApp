@@ -1,16 +1,17 @@
 package sample.template.presentation.presenter;
 
+import android.util.Log;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.functions.Action1;
 import rx.functions.Func1;
-import rx.observers.Subscribers;
+import sample.template.di.PerPage;
 import sample.template.domain.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.di.PerPage;
 import sample.template.presentation.component.presenter.BasePresenter;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
@@ -48,12 +49,17 @@ public class StubPresenter extends BasePresenter<StubContract.View> implements S
                 .subscribeOn(mSchedulers.backgroundThread())
                 .observeOn(mSchedulers.uiThread())
                 .subscribe(
-                        Subscribers.create(new Action1<List<ItemViewModel>>() {
+                        new Action1<List<ItemViewModel>>() {
                             @Override
                             public void call(List<ItemViewModel> items) {
                                 view.showResult(items);
                             }
-                        })
+                        }, new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                Log.e("StubPresenter", "Crashed", throwable);
+                            }
+                        }
                 );
     }
 }

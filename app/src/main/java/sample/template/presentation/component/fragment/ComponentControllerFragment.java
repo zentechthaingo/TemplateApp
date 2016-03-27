@@ -1,12 +1,15 @@
-package sample.template.presentation.component;
+package sample.template.presentation.component.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 
-public abstract class ComponentControllerFragment<C> extends Fragment {
+import sample.template.presentation.component.ComponentCache;
+import sample.template.presentation.component.ComponentControllerDelegate;
+import sample.template.presentation.component.ComponentFactory;
+
+public abstract class ComponentControllerFragment<C> extends BaseFragment {
     private ComponentCache componentCache;
     private ComponentControllerDelegate<C> componentDelegate = new ComponentControllerDelegate<>();
 

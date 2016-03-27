@@ -12,6 +12,7 @@ import sample.template.domain.route.RouteCallerFactory;
 import sample.template.domain.route.Router;
 import sample.template.domain.route.page.ItemsLoader;
 import sample.template.di.PerPage;
+import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.mapper.ItemViewMapper;
 import sample.template.presentation.presenter.StubPresenter;
 
@@ -30,5 +31,11 @@ public class StubModule {
         ItemsLoader<List<AppItem>> itemsLoader = new ItemsLoader<>(router);
 
         return new StubPresenter(itemsLoader, viewMapper, appSchedulers);
+    }
+
+    @PerPage
+    @Provides
+    StubContract.Action providesActionListener(StubPresenter presenter) {
+        return presenter;
     }
 }

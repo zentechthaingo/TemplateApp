@@ -7,7 +7,10 @@ public abstract class BasePresenter<T> implements Presenter<T> {
     protected T view;
 
     @Override
-    public void bindView(T view) {
+    public void bindView(@NonNull T view) {
+        if (view == null) {
+            throw new IllegalArgumentException("View should not be null");
+        }
         this.view = view;
     }
 

@@ -1,7 +1,10 @@
-package sample.template.presentation.component;
+package sample.template.presentation.component.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import sample.template.presentation.component.ComponentCache;
+import sample.template.presentation.component.ComponentCacheDelegate;
 
 public class ComponentCacheActivity extends AppCompatActivity implements ComponentCache {
     private ComponentCacheDelegate delegate = new ComponentCacheDelegate();

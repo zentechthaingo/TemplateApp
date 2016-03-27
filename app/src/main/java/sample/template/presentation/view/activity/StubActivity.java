@@ -3,6 +3,7 @@ package sample.template.presentation.view.activity;
 import android.os.Bundle;
 
 import sample.template.R;
+import sample.template.presentation.component.activity.BaseActivity;
 import sample.template.presentation.view.fragment.StubListFragment;
 
 public class StubActivity extends BaseActivity {

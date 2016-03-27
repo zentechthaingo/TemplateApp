@@ -5,7 +5,7 @@ import sample.template.di.PerPage;
 import sample.template.di.module.StubModule;
 import sample.template.presentation.component.presenter.HasPresenter;
 import sample.template.presentation.presenter.StubPresenter;
-import sample.template.presentation.view.fragment.StubListFragment;
+import sample.template.widget.StubListWidget;
 
 /**
  * @author Tom Koptel
@@ -17,5 +17,5 @@ import sample.template.presentation.view.fragment.StubListFragment;
         }
 )
 public interface StubComponent extends HasPresenter<StubPresenter> {
-    void inject(StubListFragment page);
+    StubListWidget inject(StubListWidget page);
 }

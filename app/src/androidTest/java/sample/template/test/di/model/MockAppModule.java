@@ -9,7 +9,7 @@ import dagger.Provides;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import sample.template.App;
-import sample.template.AppSchedulers;
+import sample.template.domain.AppSchedulers;
 import sample.template.di.PerApplication;
 import sample.template.di.module.AppModule;
 

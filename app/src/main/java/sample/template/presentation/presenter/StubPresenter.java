@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.observers.Subscribers;
-import sample.template.AppSchedulers;
+import sample.template.domain.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
 import sample.template.di.PerActivity;

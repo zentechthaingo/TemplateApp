@@ -5,7 +5,8 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import sample.template.App;
-import sample.template.AppSchedulers;
+import sample.template.data.DefaultSchedulers;
+import sample.template.domain.AppSchedulers;
 import sample.template.di.ApplicationContext;
 import sample.template.di.PerApplication;
 
@@ -29,7 +30,7 @@ public class AppModule {
 
     @Provides
     @PerApplication
-    AppSchedulers providesAppSchedulers() {
-        return AppSchedulers.DEFAULT;
+    AppSchedulers providesAppSchedulers(DefaultSchedulers schedulers) {
+        return schedulers;
     }
 }

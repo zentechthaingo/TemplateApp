@@ -6,13 +6,11 @@ import javax.inject.Inject;
 
 import rx.Observable;
 import rx.functions.Func0;
-import sample.template.AppSchedulers;
-import sample.template.di.PerApplication;
+import sample.template.domain.AppSchedulers;
 
 /**
  * @author Tom Koptel
  */
-@PerApplication
 public class ThreeSecondsOperation extends AbstractUseCase<Void, Void> {
     @Inject
     public ThreeSecondsOperation(AppSchedulers schedulers) {

@@ -5,7 +5,7 @@ import java.util.List;
 
 import dagger.Module;
 import dagger.Provides;
-import sample.template.AppSchedulers;
+import sample.template.domain.AppSchedulers;
 import sample.template.data.route.FakeItemsSearchCallerFactory;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.RouteCallerFactory;

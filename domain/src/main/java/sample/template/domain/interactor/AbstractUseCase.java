@@ -4,19 +4,20 @@ package sample.template.domain.interactor;
  * @author Tom Koptel
  */
 
-import android.support.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
-import sample.template.AppSchedulers;
+import sample.template.domain.AppSchedulers;
 
 public abstract class AbstractUseCase<Result, Argument> {
     private final AppSchedulers mSchedulers;
     private Subscription subscription = Subscriptions.empty();
 
-    protected AbstractUseCase(AppSchedulers schedulers) {
+    protected AbstractUseCase(@NotNull AppSchedulers schedulers) {
         mSchedulers = schedulers;
     }
 
@@ -27,7 +28,7 @@ public abstract class AbstractUseCase<Result, Argument> {
      *
      * @param useCaseSubscriber The guy who will be listen to the observable build with {@link #buildUseCaseObservable(Argument)}.
      */
-    public void execute(@NonNull Argument argument, @NonNull Subscriber<? super Result> useCaseSubscriber) {
+    public void execute(@NotNull Argument argument, @NotNull Subscriber<? super Result> useCaseSubscriber) {
         Observable<Result> command = this.buildUseCaseObservable(argument);
         this.subscription = command
                 .subscribeOn(mSchedulers.backgroundThread())

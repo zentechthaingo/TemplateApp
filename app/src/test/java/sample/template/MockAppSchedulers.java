@@ -4,6 +4,7 @@ import org.mockito.Mock;
 
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
+import sample.template.domain.AppSchedulers;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

@@ -1,19 +1,20 @@
 package sample.template.domain.model;
 
-import android.support.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Tom Koptel
  */
 public class AppItem {
-    @NonNull
+    @NotNull
     private final String label;
 
-    public AppItem(@NonNull String label) {
+    public AppItem(@NotNull String label) {
         this.label = label;
     }
 
-    @NonNull
+    @NotNull
     public String getLabel() {
         return label;
     }

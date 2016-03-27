@@ -73,49 +73,59 @@ android {
 }
 
 dependencies {
-    def lib = rootProject.ext.commonDependencies
-    def presentationLib = rootProject.ext.presentationDependencies
-    def presentationTestLib = rootProject.ext.presentationTestDependencies
-    def dataLib = rootProject.ext.dataDependencies
-    def testLib = rootProject.ext.dataTestDependencies
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
 
-    apt lib.daggerCompiler
-    provided lib.javaxAnnotation
-    compile lib.dagger
+    apt presentationDependencies.daggerCompiler
+    compile presentationDependencies.dagger
+    provided presentationDependencies.javaxAnnotation
 
-    compile lib.supportAnnotations
+    compile presentationDependencies.butterKnife
+    compile presentationDependencies.recyclerView
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxAndroid
+    compile presentationDependencies.appcompatv7
+    compile presentationDependencies.supportAnnotations
 
-    compile presentationLib.butterKnife
-    compile presentationLib.appcompatv7
-    compile presentationLib.recyclerView
+    androidTestApt presentationDependencies.daggerCompiler
+    androidTestCompile presentationTestDependencies.mockito
+    androidTestCompile presentationTestDependencies.hamcrest
+    androidTestCompile presentationTestDependencies.dexmaker
+    androidTestCompile presentationTestDependencies.dexmakerMockito
+    androidTestCompile presentationTestDependencies.espressoCore
+    androidTestCompile presentationTestDependencies.espressoIntents
+    androidTestCompile presentationTestDependencies.androidTestRules
 
-    compile dataLib.rxJava
-    compile dataLib.rxAndroid
+    def dataDependencies = rootProject.ext.dataDependencies
+    def testDependencies = rootProject.ext.dataTestDependencies
 
-    compile dataLib.gson
-    compile dataLib.retrofit2
-    compile dataLib.retrofit2GsonConverter
-    compile dataLib.retrofit2RxAdapter
+    compile project(':domain')
 
-    testApt lib.daggerCompiler
-    testCompile testLib.junit
-    testCompile testLib.mockito
-    testCompile testLib.hamcrest
-    testCompile testLib.robolectric
+    apt dataDependencies.daggerCompiler
+    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.dagger
 
-    androidTestApt lib.daggerCompiler
-    androidTestCompile presentationTestLib.mockito
-    androidTestCompile presentationTestLib.hamcrest
-    androidTestCompile presentationTestLib.dexmaker
-    androidTestCompile presentationTestLib.dexmakerMockito
-    androidTestCompile presentationTestLib.espressoCore
-    androidTestCompile presentationTestLib.espressoIntents
-    androidTestCompile presentationTestLib.androidTestRules
+    compile dataDependencies.rxJava
+    compile dataDependencies.rxAndroid
+
+    compile dataDependencies.gson
+    compile dataDependencies.retrofit2
+    compile dataDependencies.retrofit2GsonConverter
+    compile dataDependencies.retrofit2RxAdapter
+
+    compile dataDependencies.supportAnnotations
+
+    testApt dataDependencies.daggerCompiler
+
+    testCompile testDependencies.junit
+    testCompile testDependencies.hamcrest
+    testCompile testDependencies.mockito
+    testCompile testDependencies.robolectric
 }
 
 configurations.all {
     resolutionStrategy {
         // Force our version of support-annotations, we have a conflict between app and androidTest dependency resolution.
-        force rootProject.ext.commonDependencies.supportAnnotations
+        force rootProject.ext.presentationDependencies.supportAnnotations
     }
 }

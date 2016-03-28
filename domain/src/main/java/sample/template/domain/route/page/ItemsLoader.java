@@ -14,10 +14,14 @@ public class ItemsLoader<T> {
     }
 
     public Observable<T> firstPage() {
-        return (Observable<T>) new FirstPage<>(mRouter.getAllRoutes()).asObservable();
+        FirstPage<T> page = new FirstPage<>(mRouter.getAllRoutes());
+        Observable<T> observable = (Observable<T>) page.asObservable();
+        return observable;
     }
 
     public Observable<T> olderPages() {
-        return (Observable<T>) new OlderPage<>(mRouter.getAllRoutes()).asObservable();
+        OlderPage<T> page = new OlderPage<>(mRouter.getAllRoutes());
+        Observable<T> observable = (Observable<T>) page.asObservable();
+        return observable;
     }
 }

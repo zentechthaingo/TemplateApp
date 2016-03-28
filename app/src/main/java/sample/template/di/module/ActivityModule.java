@@ -1,7 +1,7 @@
 package sample.template.di.module;
 
-import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -13,15 +13,15 @@ import sample.template.di.PerPage;
  */
 @Module
 public class ActivityModule {
-    private final Activity mActivity;
+    private final FragmentActivity mActivity;
 
-    public ActivityModule(Activity activity) {
+    public ActivityModule(FragmentActivity activity) {
         mActivity = activity;
     }
 
     @PerPage
     @Provides
-    Activity providesActivity() {
+    FragmentActivity providesActivity() {
         return mActivity;
     }
 

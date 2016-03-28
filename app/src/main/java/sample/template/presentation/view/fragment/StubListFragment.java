@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import sample.template.GraphObject;
 import sample.template.R;
-import sample.template.di.component.StubComponent;
+import sample.template.di.component.StubActivityComponent;
+import sample.template.di.component.StubPageComponent;
+import sample.template.di.module.LoaderModule;
 import sample.template.presentation.component.fragment.PresenterControllerFragment;
 import sample.template.presentation.presenter.StubPresenter;
 import sample.template.widget.StubListWidget;
@@ -17,17 +19,19 @@ import sample.template.widget.StubListWidget;
 /**
  * @author Tom Koptel
  */
-public class StubListFragment extends PresenterControllerFragment<StubComponent, StubPresenter> {
+public class StubListFragment extends PresenterControllerFragment<StubPageComponent, StubPresenter> {
 
-    @Bind(R.id.listView)
+    @Bind(R.id.list)
     StubListWidget mWidget;
+
+    private StubActivityComponent mActivityComponent;
 
     public static StubListFragment newInstance() {
         return new StubListFragment();
     }
 
     @Override
-    protected StubComponent onCreateNonConfigurationComponent() {
+    protected StubPageComponent onCreateNonConfigurationComponent() {
         return GraphObject.Factory.from(getContext())
                 .getComponent()
                 .createStubComponent();
@@ -36,15 +40,19 @@ public class StubListFragment extends PresenterControllerFragment<StubComponent,
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        StubListWidget root = (StubListWidget) inflater.inflate(R.layout.stub_list, container, false);
-        return getComponent().inject(root);
+        StubListWidget root = (StubListWidget) inflater.inflate(R.layout.stub_list_widget, container, false);
+        return activityComponent().inject(root);
+    }
+
+    private StubActivityComponent activityComponent() {
+        if (mActivityComponent == null) {
+            mActivityComponent = getComponent().plus(new LoaderModule(this));
+        }
+        return mActivityComponent;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        StubPresenter presenter = getComponent().getPresenter();
-        presenter.bindView(mWidget);
+    public StubPresenter getPresenter() {
+        return activityComponent().getPresenter();
     }
 }

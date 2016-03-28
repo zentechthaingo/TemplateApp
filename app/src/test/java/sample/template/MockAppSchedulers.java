@@ -2,6 +2,7 @@ package sample.template;
 
 import org.mockito.Mock;
 
+import rx.Observable;
 import rx.Scheduler;
 import rx.schedulers.Schedulers;
 import sample.template.domain.AppSchedulers;
@@ -12,7 +13,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 /**
  * @author Tom Koptel
  */
-public class MockAppSchedulers implements AppSchedulers {
+public class MockAppSchedulers extends AppSchedulers {
     @Mock
     AppSchedulers mAppSchedulers;
 

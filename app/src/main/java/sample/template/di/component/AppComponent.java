@@ -16,5 +16,5 @@ import sample.template.di.module.NetworkModule;
         }
 )
 public interface AppComponent {
-    StubComponent createStubComponent();
+    StubPageComponent createStubComponent();
 }

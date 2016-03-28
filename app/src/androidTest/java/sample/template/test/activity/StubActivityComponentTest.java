@@ -19,7 +19,7 @@ import static org.hamcrest.core.AllOf.allOf;
  * @author Tom Koptel
  */
 @RunWith(AndroidJUnit4.class)
-public class StubActivityTest {
+public class StubActivityComponentTest {
     @Rule
     public IntentsTestRule<StubActivity> activityRule = new IntentsTestRule<>(
             StubActivity.class,

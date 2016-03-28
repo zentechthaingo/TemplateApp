@@ -4,14 +4,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public abstract class BasePresenter<T> implements Presenter<T> {
-    protected T view;
+    protected T mView;
 
     @Override
     public void bindView(@NonNull T view) {
         if (view == null) {
             throw new IllegalArgumentException("View should not be null");
         }
-        this.view = view;
+        this.mView = view;
         onBindView(view);
     }
 
@@ -21,7 +21,7 @@ public abstract class BasePresenter<T> implements Presenter<T> {
 
     @Override
     public void unbindView() {
-        this.view = null;
+        this.mView = null;
     }
 
     @Override

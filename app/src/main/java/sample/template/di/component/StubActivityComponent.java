@@ -1,21 +1,24 @@
 package sample.template.di.component;
 
 import dagger.Subcomponent;
-import sample.template.di.PerPage;
-import sample.template.di.module.StubModule;
+import sample.template.di.PerActivity;
+import sample.template.di.module.LoaderModule;
+import sample.template.di.module.StubActivityModule;
 import sample.template.presentation.component.presenter.HasPresenter;
 import sample.template.presentation.presenter.StubPresenter;
 import sample.template.widget.StubListWidget;
 
 /**
  * @author Tom Koptel
+ * @since 2.5
  */
-@PerPage
+@PerActivity
 @Subcomponent(
         modules = {
-                StubModule.class,
+                LoaderModule.class,
+                StubActivityModule.class
         }
 )
-public interface StubComponent extends HasPresenter<StubPresenter> {
+public interface StubActivityComponent extends HasPresenter<StubPresenter> {
     StubListWidget inject(StubListWidget page);
 }

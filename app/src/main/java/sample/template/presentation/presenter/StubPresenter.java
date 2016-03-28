@@ -1,6 +1,5 @@
 package sample.template.presentation.presenter;
 
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.List;
@@ -15,7 +14,6 @@ import sample.template.domain.AppSchedulers;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
 import sample.template.presentation.component.presenter.BasePresenter;
-import sample.template.presentation.component.presenter.PresenterBundle;
 import sample.template.presentation.contract.StubContract;
 import sample.template.presentation.model.ItemViewModel;
 import sample.template.presentation.model.mapper.ItemViewMapper;
@@ -41,11 +39,12 @@ public class StubPresenter extends BasePresenter<StubContract.View> implements S
     }
 
     @Override
-    public void onCreate(@Nullable PresenterBundle bundle) {
-        loadFirstPage();
+    public void onBindView(StubContract.View view) {
+        view.ready();
     }
 
-    private void loadFirstPage() {
+    @Override
+    public void loadFirstPage() {
         loadPage(mItemsLoader.firstPage(), new Action1<List<ItemViewModel>>() {
             @Override
             public void call(List<ItemViewModel> items) {

@@ -12,6 +12,11 @@ public abstract class BasePresenter<T> implements Presenter<T> {
             throw new IllegalArgumentException("View should not be null");
         }
         this.view = view;
+        onBindView(view);
+    }
+
+    @Override
+    public void onBindView(T view) {
     }
 
     @Override

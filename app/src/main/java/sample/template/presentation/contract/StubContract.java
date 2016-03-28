@@ -11,12 +11,14 @@ import sample.template.presentation.model.ItemViewModel;
  */
 public interface StubContract {
     interface View {
+        void ready();
         void showFirstPage(@NonNull List<ItemViewModel> result);
         void showOlderPage(@NonNull List<ItemViewModel> result);
         void cancelPageLoader();
     }
 
     interface Action {
+        void loadFirstPage();
         void loadOlderPage();
     }
 }

@@ -3,6 +3,7 @@ package sample.template.test.di.model;
 import android.os.AsyncTask;
 
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,7 +15,6 @@ import sample.template.di.PerApplication;
 import sample.template.di.module.AppModule;
 
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
  * @author Tom Koptel
@@ -27,7 +27,7 @@ public class MockAppModule extends AppModule {
 
     public MockAppModule(App app) {
         super(app);
-        initMocks(this);
+        MockitoAnnotations.initMocks(this);
         when(mAppSchedulers.backgroundThread())
                 .thenReturn(Schedulers.from(AsyncTask.SERIAL_EXECUTOR));
         when(mAppSchedulers.uiThread())

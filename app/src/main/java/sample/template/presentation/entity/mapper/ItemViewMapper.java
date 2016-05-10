@@ -5,14 +5,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import sample.template.di.PerScreen;
 import sample.template.domain.model.AppItem;
-import sample.template.di.PerActivity;
 import sample.template.presentation.entity.ItemViewModel;
 
 /**
  * @author Tom Koptel
  */
-@PerActivity
+@PerScreen
 public class ItemViewMapper {
     @Inject
     public ItemViewMapper() {

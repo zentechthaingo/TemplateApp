@@ -8,7 +8,7 @@ import rx.Subscription;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import sample.template.AppSchedulers;
-import sample.template.di.PerActivity;
+import sample.template.di.PerScreen;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.page.ItemsLoader;
 import sample.template.presentation.entity.ItemViewModel;
@@ -18,7 +18,7 @@ import sample.template.presentation.entity.mapper.ItemViewMapper;
  * @author Tom Koptel
  * @since 2.5
  */
-@PerActivity
+@PerScreen
 public class ItemModel {
     private ItemsLoader<List<AppItem>> itemsLoader;
     private ItemViewMapper itemViewMapper;

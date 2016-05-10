@@ -4,8 +4,6 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
     - echo y | android update sdk --no-ui --all --filter "extra-google-google_play_services"
-    - echo y | android update sdk --no-ui --all --filter "extra-google-m2repository"
-    - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
 
 test:
   pre:
@@ -20,11 +18,11 @@ test:
     - adb shell settings put global animator_duration_scale 0
 
   override:
-    - ./gradlew createMockDebugCoverageReport
+    - ./gradlew createDevDebugCoverageReport
     - ./gradlew test
 
   post:
     - cp -r app/build/outputs $CIRCLE_ARTIFACTS
     - cp -r app/build/outputs/androidTest-results/ $CIRCLE_TEST_REPORTS
     - cp -r app/build/reports/coverage/ $CIRCLE_TEST_REPORTS
-    - cp -r app/build/test-results/mockDebug/ $CIRCLE_TEST_REPORTS
+    - cp -r app/build/reports/androidTests/ $CIRCLE_TEST_REPORTS

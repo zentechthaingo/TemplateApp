@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-import sample.template.presentation.model.ItemViewModel;
+import sample.template.presentation.entity.ItemViewModel;
 
 /**
  * @author Tom Koptel

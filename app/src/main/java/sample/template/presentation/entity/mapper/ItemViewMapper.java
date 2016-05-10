@@ -1,4 +1,4 @@
-package sample.template.presentation.model.mapper;
+package sample.template.presentation.entity.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import sample.template.domain.model.AppItem;
 import sample.template.di.PerActivity;
-import sample.template.presentation.model.ItemViewModel;
+import sample.template.presentation.entity.ItemViewModel;
 
 /**
  * @author Tom Koptel

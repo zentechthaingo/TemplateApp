@@ -4,67 +4,46 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import rx.functions.Action1;
-import rx.functions.Func1;
-import rx.observers.Subscribers;
-import sample.template.AppSchedulers;
-import sample.template.domain.model.AppItem;
-import sample.template.domain.route.page.ItemsLoader;
 import sample.template.di.PerActivity;
 import sample.template.presentation.contract.StubContract;
-import sample.template.presentation.model.ItemViewModel;
-import sample.template.presentation.model.mapper.ItemViewMapper;
+import sample.template.presentation.entity.ItemViewModel;
+import sample.template.presentation.model.ItemModel;
+import sample.template.presentation.model.Result;
 
 /**
  * @author Tom Koptel
  */
 @PerActivity
-public class StubPresenter extends Presenter<StubContract.View> implements StubContract.Action {
-    private ItemsLoader<List<AppItem>> mItemsLoader;
-    private ItemViewMapper mItemViewMapper;
-    private AppSchedulers mSchedulers;
+public class StubPresenter extends Presenter<StubContract.View> implements StubContract.Action, ItemModel.Callback {
+    private ItemModel itemModel;
 
     @Inject
     public StubPresenter(
-            ItemsLoader<List<AppItem>> itemsLoader,
-            ItemViewMapper itemViewMapper,
-            AppSchedulers schedulers
+            ItemModel itemModel
     ) {
-        mItemsLoader = itemsLoader;
-        mItemViewMapper = itemViewMapper;
-        mSchedulers = schedulers;
+        super(StubContract.View.class);
+        this.itemModel = itemModel;
     }
 
     @Override
-    public void resume() {
+    public void onBindView(StubContract.View view) {
+        itemModel.subscibe(this);
     }
 
     @Override
-    public void pause() {
-    }
-
-    @Override
-    public void destroy() {
+    public void onUnbindView() {
+        itemModel.unsubscribe();
     }
 
     @Override
     public void loadData() {
-        mItemsLoader.firstPage()
-                .map(new Func1<List<AppItem>, List<ItemViewModel>>() {
-                    @Override
-                    public List<ItemViewModel> call(List<AppItem> appItems) {
-                        return mItemViewMapper.toViewModels(appItems);
-                    }
-                })
-                .subscribeOn(mSchedulers.backgroundThread())
-                .observeOn(mSchedulers.uiThread())
-                .subscribe(
-                        Subscribers.create(new Action1<List<ItemViewModel>>() {
-                            @Override
-                            public void call(List<ItemViewModel> items) {
-                                getView().showResult(items);
-                            }
-                        })
-                );
+        itemModel.loadData();
+    }
+
+    @Override
+    public void onDataResult(Result<List<ItemViewModel>> result) {
+        if (result.isSuccess()) {
+            getView().showResult(result.getData());
+        }
     }
 }

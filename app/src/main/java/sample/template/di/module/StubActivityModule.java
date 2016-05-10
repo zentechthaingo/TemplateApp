@@ -7,12 +7,13 @@ import dagger.Module;
 import dagger.Provides;
 import sample.template.AppSchedulers;
 import sample.template.data.route.FakeItemsSearchCallerFactory;
+import sample.template.di.PerActivity;
 import sample.template.domain.model.AppItem;
 import sample.template.domain.route.RouteCallerFactory;
 import sample.template.domain.route.Router;
 import sample.template.domain.route.page.ItemsLoader;
-import sample.template.di.PerActivity;
-import sample.template.presentation.model.mapper.ItemViewMapper;
+import sample.template.presentation.entity.mapper.ItemViewMapper;
+import sample.template.presentation.model.ItemModel;
 import sample.template.presentation.presenter.StubPresenter;
 
 /**
@@ -29,6 +30,7 @@ public class StubActivityModule {
         Router<List<AppItem>> router = new Router<>(routeCallerFactories);
         ItemsLoader<List<AppItem>> itemsLoader = new ItemsLoader<>(router);
 
-        return new StubPresenter(itemsLoader, viewMapper, appSchedulers);
+        ItemModel itemModel = new ItemModel(itemsLoader, viewMapper, appSchedulers);
+        return new StubPresenter(itemModel);
     }
 }

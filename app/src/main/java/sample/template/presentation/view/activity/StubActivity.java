@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import sample.template.R;
 import sample.template.di.module.ActivityModule;
 import sample.template.presentation.contract.StubContract;
-import sample.template.presentation.model.ItemViewModel;
+import sample.template.presentation.entity.ItemViewModel;
 import sample.template.presentation.presenter.StubPresenter;
 
 public class StubActivity extends BaseActivity implements StubContract.View {
@@ -23,9 +23,9 @@ public class StubActivity extends BaseActivity implements StubContract.View {
     ListView listView;
 
     @Inject
-    StubPresenter mPresenter;
+    StubPresenter presenter;
 
-    private ArrayAdapter<ItemViewModel> mAdapter;
+    private ArrayAdapter<ItemViewModel> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,38 +33,29 @@ public class StubActivity extends BaseActivity implements StubContract.View {
         setContentView(R.layout.activity_stub);
         ButterKnife.bind(this);
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        listView.setAdapter(mAdapter);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(adapter);
 
         getAppComponent()
                 .plus(new ActivityModule(this))
                 .inject(this);
 
-        mPresenter.injectView(this);
-        mPresenter.loadData();
-    }
+        presenter.takeView(this);
 
-    @Override
-    public void showResult(@NonNull List<ItemViewModel> result) {
-        mAdapter.addAll(result);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mPresenter.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mPresenter.pause();
+        if (savedInstanceState == null) {
+            presenter.loadData();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.destroy();
+        presenter.dropView();
+    }
+
+    @Override
+    public void showResult(@NonNull List<ItemViewModel> result) {
+        adapter.addAll(result);
+        adapter.notifyDataSetChanged();
     }
 }

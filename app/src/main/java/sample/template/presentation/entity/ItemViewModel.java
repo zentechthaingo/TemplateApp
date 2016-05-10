@@ -1,4 +1,4 @@
-package sample.template.presentation.model;
+package sample.template.presentation.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

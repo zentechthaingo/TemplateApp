@@ -20,5 +20,5 @@ import sample.template.presentation.view.activity.BaseActivity;
 public interface AppComponent {
     void inject(BaseActivity baseActivity);
 
-    StubActivityComponent plus(ActivityModule activityModule);
+    StubScreenComponent createStubScreenComponent();
 }

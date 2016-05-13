@@ -8,7 +8,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.1.0'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath "com.fernandocejas.frodo:frodo-plugin:0.8.2"
+        classpath 'com.fernandocejas.frodo:frodo-plugin:0.8.2'
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+        classpath "org.jacoco:org.jacoco.core:0.7.6.201602180812"
     }
 }
 

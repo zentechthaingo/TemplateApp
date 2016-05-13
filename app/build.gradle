@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.fernandocejas.frodo'
+apply plugin: 'jacoco-android'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -119,4 +120,12 @@ configurations.all {
         // Force our version of support-annotations, we have a conflict between app and androidTest dependency resolution.
         force rootProject.ext.commonDependencies.supportAnnotations
     }
+}
+
+jacoco {
+    toolVersion = rootProject.ext.jacocoVersion
+}
+
+jacocoAndroidUnitTestReport {
+    excludes += ['**/*ViewBinder.class']
 }

@@ -84,6 +84,9 @@ android {
             minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
         }
     }
+    dexOptions {
+        preDexLibraries = true
+    }
 }
 
 dependencies {

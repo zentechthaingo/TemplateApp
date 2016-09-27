@@ -1,0 +1,7 @@
+ext {
+    pluginAndroidTools = '2.2.0'
+    pluginAndroidApt = '1.8'
+    pluginJacocoAndroidVersion = '0.1.1'
+    pluginJacocoVersion = '0.7.7.201606060606'
+    pluginFrodoApt = '0.8.3'
+}

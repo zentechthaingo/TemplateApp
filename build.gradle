@@ -1,16 +1,27 @@
-apply from: 'buildsystem/dependencies.gradle'
+apply from: "$rootDir/buildsystem/dependencies.gradle"
 
 buildscript {
+    apply from: "$rootDir/buildsystem/plugins.gradle"
+
     repositories {
         jcenter()
-        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        classpath 'com.fernandocejas.frodo:frodo-plugin:0.8.2'
-        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
-        classpath "org.jacoco:org.jacoco.core:0.7.6.201602180812"
+        classpath "com.android.tools.build:gradle:$pluginAndroidTools"
+    }
+}
+
+subprojects {
+    buildscript {
+        apply from: "$rootDir/buildsystem/plugins.gradle"
+
+        repositories {
+            jcenter()
+        }
+        dependencies {
+            classpath "com.dicedmelon.gradle:jacoco-android:$pluginJacocoAndroidVersion"
+            classpath "org.jacoco:org.jacoco.core:$pluginJacocoVersion"
+        }
     }
 }
 
@@ -26,4 +37,27 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+subprojects {
+    apply from: "$rootDir/buildsystem/plugins.gradle"
+
+    afterEvaluate {
+        def hasAndroidJacocoPlugin = project.plugins.hasPlugin('jacoco-android')
+
+        if (hasAndroidJacocoPlugin) {
+            jacocoAndroidUnitTestReport {
+                excludes += [
+                        '**/*ViewBinder.class',
+                        '**/*$Parcelable*.*',
+                        '**/*_Factory.*',
+                        '**/*$*$*.*',
+                        '**/*$*.*'
+                ]
+            }
+            jacoco {
+                toolVersion = pluginJacocoVersion
+            }
+        }
+    }
 }

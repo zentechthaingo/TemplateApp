@@ -1,3 +1,15 @@
+buildscript {
+    apply from: "$rootDir/buildsystem/plugins.gradle"
+
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.neenbedankt.gradle.plugins:android-apt:$pluginAndroidApt"
+        classpath "com.fernandocejas.frodo:frodo-plugin:$pluginFrodoApt"
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.fernandocejas.frodo'
@@ -120,12 +132,4 @@ configurations.all {
         // Force our version of support-annotations, we have a conflict between app and androidTest dependency resolution.
         force rootProject.ext.commonDependencies.supportAnnotations
     }
-}
-
-jacoco {
-    toolVersion = rootProject.ext.jacocoVersion
-}
-
-jacocoAndroidUnitTestReport {
-    excludes += ['**/*ViewBinder.class']
 }
